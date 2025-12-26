@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const items = ref([
+interface IMenuItem {
+  label: string
+  icon: string
+  path: string
+}
+
+const items = ref<IMenuItem[]>([
   {
     label: 'Авторизация',
     icon: 'pi pi-user',
@@ -29,7 +35,7 @@ const items = ref([
   <Menubar :model="items" class="menu">
     <template #item="{ item, props }">
       <router-link :to="item.path" class="flex align-items-center" v-bind="props.action">
-        <span :class="item.icon" class="p-menuitem-icon" />
+        <i :class="item.icon" class="p-menuitem-icon"></i>
         <span class="ml-2">{{ item.label }}</span>
       </router-link>
     </template>
