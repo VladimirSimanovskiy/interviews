@@ -1,9 +1,28 @@
 <script setup lang="ts">
-import AppHeader from '@/shared/ui/AppHeader.vue'
+import { AppHeader } from '@/widgets'
+import { onMounted, ref } from 'vue'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useUserStore } from '@/entities/user'
+import { auth } from '@/shared/api/firebase'
+
+const userStore = useUserStore()
+const isLoading = ref<boolean>(true)
+
+onMounted(() => {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      userStore.userId = user.uid
+    } else {
+      userStore.userId = ''
+    }
+    isLoading.value = false
+  })
+})
 </script>
 
 <template>
-  <div class="container">
+  <AppProgressSpinner v-if="isLoading" />
+  <div class="container" v-else>
     <AppHeader />
     <div class="content">
       <RouterView />
