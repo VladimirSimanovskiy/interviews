@@ -2,15 +2,14 @@
 import { computed, ref } from 'vue'
 import type { ComputedRef } from 'vue'
 import { useUserStore } from '@/entities/user'
-import { signOut } from 'firebase/auth'
 import { useRouter } from 'vue-router'
-import { auth } from '@/shared/api/firebase'
+import { logout } from '@/features/auth'
 
 const userStore = useUserStore()
 const router = useRouter()
 
 const signOutMethod = async () => {
-  await signOut(auth)
+  await logout()
   router.push('/auth')
 }
 

@@ -1,20 +1,10 @@
-import type { NavigationGuardNext, RouteLocationNormalized, RouteRecordRaw } from 'vue-router'
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '@/shared/api/firebase'
+import type { RouteRecordRaw } from 'vue-router'
+import { ensureUserSessionReady, useUserStore } from '@/entities/user'
 
-const checkAuth = (
-  to: RouteLocationNormalized,
-  from: RouteLocationNormalized,
-  next: NavigationGuardNext
-) => {
-  const unsubscribe = onAuthStateChanged(auth, (user) => {
-    unsubscribe()
-    if (user) {
-      next()
-    } else {
-      next('/auth')
-    }
-  })
+const checkAuth = async () => {
+  await ensureUserSessionReady()
+  const userStore = useUserStore()
+  return userStore.userId ? true : '/auth'
 }
 export const routes: RouteRecordRaw[] = [
   {

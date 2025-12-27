@@ -1,27 +1,17 @@
 <script setup lang="ts">
 import { AppHeader } from '@/widgets'
-import { onMounted, ref } from 'vue'
-import { onAuthStateChanged } from 'firebase/auth'
-import { useUserStore } from '@/entities/user'
-import { auth } from '@/shared/api/firebase'
+import { onMounted } from 'vue'
+import { startUserSession, useUserStore } from '@/entities/user'
 
 const userStore = useUserStore()
-const isLoading = ref<boolean>(true)
 
 onMounted(() => {
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      userStore.userId = user.uid
-    } else {
-      userStore.userId = ''
-    }
-    isLoading.value = false
-  })
+  startUserSession()
 })
 </script>
 
 <template>
-  <AppProgressSpinner v-if="isLoading" />
+  <AppProgressSpinner v-if="!userStore.isSessionReady" />
   <div class="container" v-else>
     <AppHeader />
     <div class="content">
