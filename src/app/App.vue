@@ -13,6 +13,7 @@ onMounted(() => {
 <template>
   <AppProgressSpinner v-if="!userStore.isSessionReady" />
   <div class="container" v-else>
+    <AppConfirmDialog />
     <AppHeader />
     <div class="content">
       <RouterView />

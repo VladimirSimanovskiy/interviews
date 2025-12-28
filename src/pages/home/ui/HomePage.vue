@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CreateInterviewForm } from '@/features/interview-create'
+import { CreateInterviewForm } from '@/features/interview/create'
 </script>
 
 <template>

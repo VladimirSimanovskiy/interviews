@@ -4,6 +4,11 @@ import {
   doc,
   type WithFieldValue,
   type DocumentData,
+  getDocs,
+  collection,
+  query,
+  QueryConstraint,
+  deleteDoc,
 } from 'firebase/firestore'
 
 import { firebaseApp } from './app'
@@ -13,4 +18,15 @@ const db = getFirestore(firebaseApp)
 export function create(path: string, data: WithFieldValue<DocumentData>, id: string) {
   const docRef = doc(db, path, id)
   return setDoc(docRef, data)
+}
+
+export async function getAll<T>(path: string, constraints: QueryConstraint[]): Promise<T[]> {
+  const fbQuery = query(collection(db, path), ...constraints)
+  const querySnapshot = await getDocs(fbQuery)
+  return querySnapshot.docs.map((doc) => doc.data() as T)
+}
+
+export function remove(path: string, id: string) {
+  const docRef = doc(db, path, id)
+  return deleteDoc(docRef)
 }

@@ -8,8 +8,19 @@ import { router } from '@/app/providers/router'
 import { setupPrimeVue } from '@/app/providers/primevue'
 import { initFirebase } from '@/shared/api/firebase'
 
-import { AppButton, AppMenubar, AppInputText, AppProgressSpinner, AppToast } from '@/shared/ui'
-import AppCard from '@/shared/ui/AppCard'
+import {
+  AppButton,
+  AppMenubar,
+  AppInputText,
+  AppProgressSpinner,
+  AppToast,
+  AppCard,
+  AppDataTable,
+  AppColumn,
+  AppBadge,
+  AppConfirmDialog,
+  AppMessage,
+} from '@/shared/ui'
 
 initFirebase()
 
@@ -24,5 +35,10 @@ app.component('AppInputText', AppInputText)
 app.component('AppToast', AppToast)
 app.component('AppProgressSpinner', AppProgressSpinner)
 app.component('AppCard', AppCard)
+app.component('AppDataTable', AppDataTable)
+app.component('AppColumn', AppColumn)
+app.component('AppBadge', AppBadge)
+app.component('AppConfirmDialog', AppConfirmDialog)
+app.component('AppMessage', AppMessage)
 
 export default app
