@@ -9,6 +9,7 @@ import { setupPrimeVue } from '@/app/providers/primevue'
 import { initFirebase } from '@/shared/api/firebase'
 
 import { AppButton, AppMenubar, AppInputText, AppProgressSpinner, AppToast } from '@/shared/ui'
+import AppCard from '@/shared/ui/AppCard'
 
 initFirebase()
 
@@ -22,5 +23,6 @@ app.component('AppButton', AppButton)
 app.component('AppInputText', AppInputText)
 app.component('AppToast', AppToast)
 app.component('AppProgressSpinner', AppProgressSpinner)
+app.component('AppCard', AppCard)
 
 export default app
