@@ -2,6 +2,7 @@ import { FirebaseApi } from '@/shared/api'
 import type { IInterview, IInterviewData, InterviewGetAllOptions } from '../model/types'
 import { v4 as uuidv4 } from 'uuid'
 import { buildFirestoreConstraints } from '@/shared/api/firebase'
+import { normalizeInterview } from '../model'
 
 const COLLECTION_NAME = 'interviews'
 
@@ -12,7 +13,9 @@ function collectionPath(userId: string) {
 export const api = {
   create: create,
   getAll: getAll,
+  getById: getById,
   remove: remove,
+  update: update,
 } as const
 
 function create(userId: string, interview: IInterviewData) {
@@ -35,7 +38,16 @@ function create(userId: string, interview: IInterviewData) {
 }
 
 async function getAll(userId: string, options?: InterviewGetAllOptions): Promise<IInterview[]> {
-  return FirebaseApi.getAll<IInterview>(collectionPath(userId), buildFirestoreConstraints(options))
+  const items = await FirebaseApi.getAll<IInterview>(
+    collectionPath(userId),
+    buildFirestoreConstraints(options)
+  )
+  return items.map(normalizeInterview)
+}
+
+async function getById(userId: string, interviewId: string): Promise<IInterview> {
+  const item = await FirebaseApi.getById<IInterview>(collectionPath(userId), interviewId)
+  return normalizeInterview(item)
 }
 
 function remove(userId: string, interviewId: string) {
@@ -47,4 +59,15 @@ function remove(userId: string, interviewId: string) {
   }
 
   return FirebaseApi.remove(collectionPath(userId), interviewId)
+}
+
+function update(userId: string, interviewId: string, interview: IInterviewData) {
+  if (!userId) {
+    throw new Error('userId is required to update interview')
+  }
+  if (!interviewId) {
+    throw new Error('interviewId is required to update interview')
+  }
+
+  return FirebaseApi.update(collectionPath(userId), interviewId, interview)
 }

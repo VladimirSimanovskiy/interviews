@@ -6,6 +6,10 @@ export interface IInterview {
   contactTelegram?: string
   contactWhatsApp?: string
   contactPhone?: string
+  salaryFrom?: number
+  salaryTo?: number
+  stages?: InterviewStage[]
+  result?: InterviewResult
   createdAt: Date
   updatedAt: Date
 }
@@ -46,3 +50,11 @@ export interface InterviewGetAllOptions<TField extends string = string> {
   endAt?: unknown | unknown[]
   endBefore?: unknown | unknown[]
 }
+
+export interface InterviewStage {
+  name: string
+  date: Date | null
+  description?: string
+}
+
+export type InterviewResult = 'Offer' | 'Refusal'

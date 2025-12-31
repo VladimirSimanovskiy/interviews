@@ -20,6 +20,10 @@ import {
   AppBadge,
   AppConfirmDialog,
   AppMessage,
+  AppInputNumber,
+  AppTextarea,
+  AppDatePicker,
+  AppRadio,
 } from '@/shared/ui'
 
 initFirebase()
@@ -40,5 +44,8 @@ app.component('AppColumn', AppColumn)
 app.component('AppBadge', AppBadge)
 app.component('AppConfirmDialog', AppConfirmDialog)
 app.component('AppMessage', AppMessage)
-
+app.component('AppInputNumber', AppInputNumber)
+app.component('AppTextarea', AppTextarea)
+app.component('AppDatePicker', AppDatePicker)
+app.component('AppRadio', AppRadio)
 export default app

@@ -9,6 +9,10 @@ import AppColumn from './AppColumn'
 import AppBadge from './AppBadge'
 import AppConfirmDialog from './AppConfirmDialog'
 import AppMessage from './AppMessage'
+import AppInputNumber from './AppInputNumber'
+import AppTextarea from './AppTextArea'
+import AppDatePicker from './AppDatePicker'
+import AppRadio from './AppRadio'
 
 export {
   AppButton,
@@ -22,4 +26,8 @@ export {
   AppBadge,
   AppConfirmDialog,
   AppMessage,
+  AppInputNumber,
+  AppTextarea,
+  AppDatePicker,
+  AppRadio,
 }
