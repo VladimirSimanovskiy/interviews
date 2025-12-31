@@ -1,9 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import StatisticChart from '@/widgets/statistic-chart/ui/StatisticChar.vue'
+</script>
 
 <template>
-  <div>
-    <h1>Statistic</h1>
-  </div>
+  <StatisticChart />
 </template>
-
-<style scoped></style>

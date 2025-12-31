@@ -24,6 +24,7 @@ import {
   AppTextarea,
   AppDatePicker,
   AppRadio,
+  AppChart,
 } from '@/shared/ui'
 
 initFirebase()
@@ -48,4 +49,5 @@ app.component('AppInputNumber', AppInputNumber)
 app.component('AppTextarea', AppTextarea)
 app.component('AppDatePicker', AppDatePicker)
 app.component('AppRadio', AppRadio)
+app.component('AppChart', AppChart)
 export default app

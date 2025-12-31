@@ -13,6 +13,7 @@ import AppInputNumber from './AppInputNumber'
 import AppTextarea from './AppTextArea'
 import AppDatePicker from './AppDatePicker'
 import AppRadio from './AppRadio'
+import AppChart from './AppChart'
 
 export {
   AppButton,
@@ -30,4 +31,5 @@ export {
   AppTextarea,
   AppDatePicker,
   AppRadio,
+  AppChart,
 }
